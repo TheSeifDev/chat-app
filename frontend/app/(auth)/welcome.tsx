@@ -6,12 +6,12 @@ import { colors, spacingX, spacingY } from '@/constants/theme'
 import { verticalScale } from '@/utils/styling'
 import Animated, { FadeIn } from 'react-native-reanimated'
 import Button from '@/components/Button'
-import { useRouter } from '@/.expo/types/router'
+import { useRouter } from 'expo-router'
 
 const Welcome = () => {
   const router = useRouter()
   return (
-    <ScreenWrapper showPattern={true}>
+    <ScreenWrapper showPattern={true} bgOpacity={0.5}>
       <View style={styles.container}>
         <View style={{ alignItems: 'center' }}>
           <Typo color={colors.white} size={43} fontWeight={'900'}>
@@ -21,7 +21,7 @@ const Welcome = () => {
 
         <Animated.Image
           entering={FadeIn.duration(700).springify()}
-          source={require('../assets/images/welcome.png')}
+          source={require('@/assets/images/welcome.png')}
           style={styles.welcomeImage}
           resizeMode={'contain'}
         />

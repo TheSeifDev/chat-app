@@ -1,8 +1,7 @@
 import React from 'react'
 import { ScreenWrapperProps } from '@/types'
 import { colors } from '@/constants/theme'
-import { Dimensions, ImageBackground, Platform, StatusBar, StyleSheet } from 'react-native'
-import { View } from 'react-native-reanimated/lib/typescript/Animated'
+import { Dimensions, ImageBackground, Platform, StatusBar, StyleSheet, View } from 'react-native'
 
 const { height } = Dimensions.get('window')
 
