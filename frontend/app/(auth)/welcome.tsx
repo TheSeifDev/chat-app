@@ -71,3 +71,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 })
+
+// feature: welcome screen
