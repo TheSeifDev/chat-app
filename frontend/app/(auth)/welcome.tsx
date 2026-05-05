@@ -70,4 +70,3 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     alignSelf: 'center',
   },
-})
