@@ -12,24 +12,21 @@
 ```bash
 cd frontend
 npm install
-# or
-yarn
 ```
 
 ## Run
 
 ```bash
 cd frontend
-npm run start
-# or
-yarn start
+npx expo start
+#or
+npx expo start -c
 ```
 
 To run on emulators/devices:
 
 ```bash
-npm run android
-npm run ios   # macOS only
+npx expo start -c
 ```
 
 ## Notes
