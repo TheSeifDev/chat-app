@@ -36,9 +36,12 @@ const Register = () => {
     }
     try {
       setIsLoading(true);
-      await signUp( emailRef.current, passwordRef.current, nameRef.current, "");
-    } catch (error : any) {
-      Alert.alert("Sign Up", "Failed to sign up. Please try again." , error.message);
+      await signUp(emailRef.current, passwordRef.current, nameRef.current, "");
+    } catch (error: any) {
+      Alert.alert(
+        "Sign Up",
+        error?.response?.data?.msg || "Failed to sign up. Please try again.",
+      );
     } finally {
       setIsLoading(false);
     }
