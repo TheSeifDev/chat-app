@@ -3,7 +3,8 @@ import http from "http";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
-import authRoutes from "./routes/auth.routes";
+import authRoutes from "./routes/auth.routes.js";
+import { initailzeSocket } from "./socket/soket.js";
 dotenv.config();
 
 const app = express();
@@ -20,6 +21,9 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 const server = http.createServer(app);
+
+
+initailzeSocket(server);
 
 connectDB()
   .then(() => {
