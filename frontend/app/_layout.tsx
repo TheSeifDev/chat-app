@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import React from "react";
 import { Stack } from "expo-router";
 import { AuthProvider } from "@/contexts/authContext";
+import { ConversationProvider } from "@/contexts/conversationContext";
 
 const StackLayout = () => {
   return <Stack screenOptions={{ headerShown: false }} />;
@@ -9,7 +10,9 @@ const StackLayout = () => {
 const RootLayout = () => {
   return (
     <AuthProvider>
-      <StackLayout />
+      <ConversationProvider>
+        <StackLayout />
+      </ConversationProvider>
     </AuthProvider>
   );
 };

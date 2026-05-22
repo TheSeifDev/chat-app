@@ -4,6 +4,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
+import conversationRoutes from "./routes/conversation.routes.js";
+import userRoutes from "./routes/user.routes.js";
+import messageRoutes from "./routes/message.routes.js";
 import { initailzeSocket } from "./socket/soket.js";
 dotenv.config();
 
@@ -13,6 +16,9 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/auth", authRoutes);
+app.use("/conversation", conversationRoutes);
+app.use("/user", userRoutes);
+app.use("/message", messageRoutes);
 
 app.get("/", (req, res) => {
   res.send("Server is running");

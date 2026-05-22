@@ -2,6 +2,8 @@ import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import { Server as SoketIoServer, Socket } from "socket.io";
 import { registerUserEvents } from "./userEvents.js";
+import { registerMessageEvents } from "./messageEvents.js";
+import Conversation from "../models/conversation.model.js";
 
 dotenv.config();
 
@@ -38,15 +40,27 @@ export function initailzeSocket(server: any): SoketIoServer {
 
   io.on("connection", async (socket: Socket) => {
     const userId = socket.data.userId;
-    console.log(`User connected: ${userId} , username: ${socket.data.username}`);
+    console.log(`User connected: ${userId} , username: ${socket.data.name}`);
 
-
-
+    // Auto-join all conversation rooms so the user receives newMessage
+    // events even when not actively in the chat screen (e.g. home screen)
+    try {
+      const conversations = await Conversation.find(
+        { participants: { $in: [userId] } },
+        "_id"
+      );
+      conversations.forEach((conv) => {
+        socket.join(conv._id.toString());
+      });
+    } catch (err) {
+      console.error("Error auto-joining conversation rooms:", err);
+    }
 
     registerUserEvents(io, socket);
+    registerMessageEvents(io, socket);
 
     socket.on("disconnect", () => {
-        console.log(`User disconnected: ${userId} , username: ${socket.data.username}`);
+        console.log(`User disconnected: ${userId} , username: ${socket.data.name}`);
     });
   });
 
